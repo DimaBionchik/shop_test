@@ -1,11 +1,7 @@
-
 import sqlite3
-
-
 from PyQt5 import  QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog, QTextEdit, QScrollArea, QVBoxLayout, QPushButton, QLabel, QApplication, QLineEdit, \
     QMessageBox
-
 from create_data_base import Data_base_meth
 import os
 from record_dialog import AddRecordDialog
@@ -271,7 +267,7 @@ class Sell_prod(QDialog):
 
             header = ["Товар", "Склад №","Покупатель","Итоговая стоимость","Дата"]
 
-            excel_file = os.path.join(desktop_path, "sell_data.xlsx")
+            excel_file = os.path.join(desktop_path, f"sell_data{self.date_delivery}.xlsx")
             wb = Workbook()
             ws = wb.active
             ws.append(header)
@@ -304,6 +300,7 @@ class Sell_prod(QDialog):
         print(self.date_delivery)
         print(self.name_text3)
         self.my_db.inser_into_sell_operation(data,self.date_delivery,self.final_price,1,str(self.basket))
+        self.my_db.inser_into_operation("Продажа товара",self.name_text3,self.date_delivery)
 
         # self.my_db.inser_into_deliver(data,self.date_delivery,basket_str)
 
@@ -319,7 +316,7 @@ class Sell_prod(QDialog):
         self.label_5.setText(_translate("Dialog", "Дата"))
         self.pushButton_7.setText(_translate("Dialog", "Очистить корзину"))
         self.pushButton_10.setText(_translate("Dialog", "Оформление"))
-        # self.pushButton_11.setText(_translate("Dialog", "Новый поставщик"))
+
         self.pushButton_12.setText(_translate("Dialog", "Главное меню"))
 
 

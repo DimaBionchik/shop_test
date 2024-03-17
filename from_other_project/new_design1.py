@@ -228,6 +228,17 @@ class Get_prod(QDialog):
             date, amount = input_dialog.get_data()
             current_text = self.plainTextEdit.toPlainText()
             new_text = current_text + "\n" + f"Товар: {name_text}, Дата: {date}, Количество: {amount}"
+            # if name_text in self.basket and date in self.basket[name_text]["expiry_date"] :
+            #     # self.basket[name_text]["expiry_date"] = date
+            #     self.basket[name_text]["quantity"] += int(amount)
+            # else:
+            #     if name_text not in self.basket:
+            #         self.basket[name_text] = {"expiry_date": date, "quantity": int(amount)}
+            #     self.basket[name_text]["quantity"] = int(amount)
+
+
+
+
             if name_text in self.basket and date in self.basket[name_text]:
                 self.basket[name_text][date] += int(amount)
             else:
@@ -301,6 +312,7 @@ class Get_prod(QDialog):
         print(self.date_delivery)
         print(self.name_text3)
         self.my_db.inser_into_operation("Поставка товара",self.name_text3,self.date_delivery)
+        self.my_db.update_basket(str(self.basket),data)
         # basket_str = ','.join(map(str, self.basket))
         self.my_db.inser_into_deliver(data,self.date_delivery,str(self.basket))
 

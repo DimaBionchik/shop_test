@@ -2,8 +2,8 @@ import sqlite3
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from scroll import Scroll
-from scroll_delete import Scroll_delete
-from scroll_move import Scroll_move
+from delete_opreations_window import Delete_win
+from move_window import Move_product
 from get_items_dialog import Scroll_get
 from new_design1 import Get_prod
 from sell_new_window import Sell_prod
@@ -14,9 +14,9 @@ class Ui_Operation(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(793, 599)
-        self.scroll_delete = Scroll_delete()
+        self.scroll_delete = Delete_win()
         self.scroll = Sell_prod()
-        self.scroll_move = Scroll_move()
+        self.scroll_move = Move_product()
         self.scroll_get = Get_prod()
         self.layoutWidget = QtWidgets.QWidget(Dialog)
         self.layoutWidget.setGeometry(QtCore.QRect(10, 20, 181, 251))

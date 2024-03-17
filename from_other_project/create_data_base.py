@@ -104,7 +104,6 @@ class Data_base_meth:
             cursor.execute(f""" SELECT id FROM Склады where name ='{name}'""")
             result = cursor.fetchall()
             value = result[0][0]
-
         return value
 
     def select_client_id(self,name):
@@ -174,5 +173,14 @@ class Data_base_meth:
                                INSERT INTO Операции (name_operation,who_fio,date_of_delivery) 
                                VALUES (?, ?, ?);
                            """, (name, who, when))
+
+
+
+    def update_basket(self,busket,sclad):
+        db_path = os.path.join(os.path.dirname(__file__), self.database_name)
+        with sl.connect(db_path) as con:
+            cursor = con.cursor()
+            cursor.execute("UPDATE Склады SET busket = ? WHERE id = ?", (busket, sclad))
+
 # data = Data_base_meth(database_name="new_bd.db")
 # data.create_connectionn()

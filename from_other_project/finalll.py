@@ -7,7 +7,7 @@ from dialog import Ui_Dialogg
 from operation import Ui_Operation
 from main import Ui_MainWindows
 from sclad import Ui_Dialoggg
-class Ui_MainWindow(object):
+class Ui_MainWindows(object):
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -82,6 +82,7 @@ class Ui_MainWindow(object):
         self.pushButton_3.clicked.connect(self.open_operation_dialog)
         self.pushButton_11.clicked.connect(self.open_main_win)
         self.pushButton_4.clicked.connect(self.open_main_win)
+        self.pushButton_10.clicked.connect(MainWindow.hide)
 
 
 
@@ -125,7 +126,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_MainWindows()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
